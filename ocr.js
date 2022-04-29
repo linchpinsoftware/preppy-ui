@@ -5,6 +5,8 @@ AWS.config.update({
     region: 'us-east-1'
 });
 
+// @todo unit tests
+
 const textract = new AWS.Textract();
 
 // fetch from DB instead
@@ -117,7 +119,7 @@ const getPercentage = str => firstMatch(str, REGEX_PERCENTAGE);
 const getUnit = str => firstMatch(str, REGEX_UNIT);
 
 //const datafs = fs.readFileSync("./cacao_facts.png");
-const datafs = fs.readFileSync("./potato_facts.jpg");
+const datafs = fs.readFileSync("./assets/potato_facts.jpg");
 
 const detectParameter = {
     Document: {

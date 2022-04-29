@@ -2,11 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import Dashboard from './Dashboard';
+import UserProfile from './UserProfile';
 
 export default function App() {
+// @todo extract components
+/*
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -22,12 +25,26 @@ export default function App() {
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
   }
+
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+*/
+  // @todo complete
+  const userProfileIsComplete = () => true;
+
   // @todo on load: pause for 1 sec(?) before loading main menu
   // @todo dashboard: food, water, and fuel for x days; water is LCDs
 
+  let content;
+  if (userProfileIsComplete()) {
+    content = <Dashboard />;
+  } else {
+    content = <UserProfile />;
+  }
+
+  return content;
+/*
   return (
     <View style={styles.container}>
       <BarCodeScanner
@@ -43,6 +60,7 @@ export default function App() {
       </View>
     </View>
   );
+*/
 }
 
 const styles = StyleSheet.create({
