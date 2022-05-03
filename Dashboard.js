@@ -1,17 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Card } from 'react-native-elements';
-//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-//import { faUtensils } from '@fortawesome/free-solid-svg-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Dashboard(props) {
   return (
     <View style={styles.container}>
       <View style={styles.row}>
         <View style={styles.cell}>
-          <Text style={styles.text}>
-            Food
-          </Text>
+          <Text style={styles.text}>Food</Text>
+          <MaterialCommunityIcons name="food-apple-outline" />
         </View>
         <View style={styles.cell}>
           <Text style={styles.text}>Water</Text>

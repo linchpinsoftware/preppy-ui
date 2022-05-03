@@ -1,5 +1,6 @@
 import React from 'react';
+import { Text, View } from 'react-native';
 
 export default function UserLogin(props) {
-  return <div>User login</div>;
+  return <View><Text>User login</Text></View>;
 }

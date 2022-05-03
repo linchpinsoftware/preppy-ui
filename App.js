@@ -1,89 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
 import Dashboard from './Dashboard';
+import PreppyCamera from './Camera';
+import React from 'react';
+import UserLogin from './UserLogin';
 import UserProfile from './UserProfile';
 
 export default function App() {
-// @todo extract components
-/*
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scanned, setScanned] = useState(false);
-  useEffect(() => {
-    (async () => {
-      const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+  // @todo complete
+  const userIsAuthenticated = () => true;
 
-  const handleBarCodeScanned = ({ type, data }) => {
-    setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
-  };
-
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-*/
   // @todo complete
   const userProfileIsComplete = () => true;
 
   // @todo on load: pause for 1 sec(?) before loading main menu
   // @todo dashboard: food, water, and fuel for x days; water is LCDs
 
-  let content;
-  if (userProfileIsComplete()) {
-    content = <Dashboard />;
-  } else {
-    content = <UserProfile />;
+  return <PreppyCamera />;
+
+  if (!userIsAuthenticated()) {
+    return <UserLogin />;
   }
 
-  return content;
-/*
-  return (
-    <View style={styles.container}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
-      />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
-      <Text style={styles.titleText}>Preppy</Text>
-      <Text style={styles.subtitle}>Don't be scared, be prepared</Text>
-      <View style={styles.buttonWrapper}>
-        <Button style={styles.button} title="Profile"/>
-        <Button style={styles.button} title="Inventory"/>
-      </View>
-    </View>
-  );
-*/
-}
+  if (!userProfileIsComplete()) {
+    return <UserProfile incomplete={true} />;
+  }
 
-const styles = StyleSheet.create({
-  button: {
-    width: '48%',
-  },
-  buttonWrapper: {
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-  },
-  container: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    margin: 10,
-  },
-  subtitle: {
-    marginBottom: 20,
-  },
-  titleText: {
-    flexDirection: 'row',
-    fontSize: 24,
-  },
-});
+  return <Dashboard />;
+}
