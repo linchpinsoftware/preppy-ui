@@ -7,8 +7,8 @@ import { TextractClient, AnalyzeDocumentCommand } from "@aws-sdk/client-textract
 const client = new TextractClient({
   region: 'us-east-1',
   credentials: {
-    accessKeyId: 'AKIASV7CDFJONFKYMMEE',
-    secretAccessKey: '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',
+    accessKeyId: ':access_key_id',
+    secretAccessKey: ':secret_access_key',
   }
 });
 
