@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 
-export default function PreppyCamera() {
-  const cameraRef = useRef(null);
+export default function PreppyCamera (props) {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -21,20 +20,6 @@ export default function PreppyCamera() {
     return <Text>No access to camera</Text>;
   }
 
-  const takePic = async () => {
-    if (!this.camera) return console.error('Camera ref is null');
-    const options = {
-      quality: 1,
-      base64: true,
-      fixOrientation: true, 
-      exif: true,
-    };
-    const photo = await this.camera.takePictureAsync(options);
-    console.log(photo);
-    alert(photo.uri);
-    return photo;
-  }
-
   return (
     <View style={styles.container}>
       <Camera
@@ -47,7 +32,18 @@ export default function PreppyCamera() {
         <View>
           <Button
             title='Take pic'
-            onPress={takePic}>
+            onPress={async () => {
+              if (!this.camera) return console.error('Camera ref is null');
+              const options = {
+                quality: 1,
+                base64: true,
+                fixOrientation: true, 
+                exif: true,
+              };
+              const photo = await this.camera.takePictureAsync(options);
+              //console.log(photo);
+              props.onTakePicture(photo);
+            }}>
             Take pic
           </Button>
         </View>
